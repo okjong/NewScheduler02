@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IntroActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/pharmacy"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_intro_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Sales Scheduler"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp" />
+    <TextView
+        android:id="@+id/tv_intro_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_intro_title"
+        android:text="For medicine sales representative"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/et_nicname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="당신의 이름을 입력하세요"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:layout_above="@+id/btn_intro_start"
+        android:layout_centerHorizontal="true"/>
+    <Button
+        android:id="@+id/btn_intro_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시작하기"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

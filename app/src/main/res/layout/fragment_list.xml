@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/list_tv_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="거래처"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/list_btn_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#E6CECE"
+            android:text="set"
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/list_tv_list"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        android:orientation="vertical"
+        app:behavior_peekHeight="30dp"
+        android:padding="16dp"
+        android:background="@drawable/bg_bottomsheet">
+
+        <View
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="4dp"
+            android:background="#FFFFFF00"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"/>
+        <TextView
+            android:id="@+id/list_tv_hospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="삼성내과"
+            android:textColor="@color/purple_200"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="예정일"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/list_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2022/11/15(화)"
+            android:textColor="@color/purple_200"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카테고리"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/list_tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점심식사"
+            android:textSize="20sp"
+            android:textColor="@color/purple_200"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="memo"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="memo"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:lines="3"/>
+        <Button
+            android:id="@+id/list_btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="save"
+            android:backgroundTint="@color/teal_200"
+            android:layout_gravity="center"/>
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
