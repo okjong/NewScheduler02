@@ -3,6 +3,8 @@ package com.jeilpharm.newscheduler02;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.CalendarView;
 
@@ -40,8 +42,51 @@ public class EditActivity extends AppCompatActivity {
         binding.tvCategory.setText(categoryTitle[category]);
 
         binding.tvDate.setOnClickListener(v->clickDate());
+        binding.tvCategory.setOnClickListener(v->bottomsheeetdialogcategory());
+        binding.btnComplete.setOnClickListener(v->clickComplete());
+        binding.etTitle.setOnClickListener(v->clickTitle());
 
     }
+
+    void clickTitle(){
+        Intent intent= new Intent();
+    }
+
+    void clickComplete(){
+        SQLiteDatabase db= openOrCreateDatabase("Todo",MODE_PRIVATE,null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS todo(num INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, date TEXT, category INT, memo TEXT)");
+        String title=binding.etTitle.getText().toString();
+        String memo=binding.etNote.getText().toString();
+
+        db.execSQL("INSERT INTO Todo(title,date,category,memo)VALUES(?,?,?,?) " ,new Object[]{title,date,category,memo});
+        onBackPressed();
+
+    }
+
+    void bottomsheeetdialogcategory(){
+        bottomSheetDialog=new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.bottomsheetdialog_category);
+        bottomSheetDialog.show();
+
+        bottomSheetDialog.findViewById(R.id.tv_bscategory_websimposium).setOnClickListener(v->clickCategory(0));
+        bottomSheetDialog.findViewById(R.id.tv_bscategory_daysimposium).setOnClickListener(v->clickCategory(1));
+        bottomSheetDialog.findViewById(R.id.tv_bscategory_staysimposium).setOnClickListener(v->clickCategory(2));
+        bottomSheetDialog.findViewById(R.id.tv_bscategory_lunch).setOnClickListener(v->clickCategory(3));
+        bottomSheetDialog.findViewById(R.id.tv_bscategory_dinner).setOnClickListener(v->clickCategory(4));
+        bottomSheetDialog.findViewById(R.id.tv_bscategory_morning).setOnClickListener(v->clickCategory(5));
+        bottomSheetDialog.findViewById(R.id.tv_bscategory_cookie).setOnClickListener(v->clickCategory(6));
+
+    }
+
+    void clickCategory(int category){
+
+        this.category=category;
+        binding.tvCategory.setText(categoryTitle[category]);
+        bottomSheetDialog.dismiss();
+
+    }
+
+
 
     void clickDate(){
 

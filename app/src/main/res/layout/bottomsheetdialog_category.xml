@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:columnCount="4">
+
+        <TextView
+            android:id="@+id/tv_bscategory_websimposium"
+            android:text="웹심포지움"
+            android:textColor="@color/black"
+            android:fontFamily="@font/kmi_bold"
+            android:padding="8dp"
+            android:layout_columnWeight="1"
+            android:textSize="12sp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_bscategory_daysimposium"
+            android:text="당일심포지움"
+            android:textColor="@color/black"
+            android:fontFamily="@font/kmi_bold"
+            android:padding="8dp"
+            android:layout_columnWeight="1"
+            android:textSize="12sp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_bscategory_staysimposium"
+            android:text="숙박심포지움"
+            android:textColor="@color/black"
+            android:fontFamily="@font/kmi_bold"
+            android:padding="8dp"
+            android:layout_columnWeight="1"
+            android:textSize="12sp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_bscategory_lunch"
+            android:text="점심식사"
+            android:textColor="@color/black"
+            android:fontFamily="@font/kmi_bold"
+            android:padding="8dp"
+            android:layout_columnWeight="1"
+            android:textSize="12sp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_bscategory_dinner"
+            android:text="저녁식사"
+            android:textColor="@color/black"
+            android:fontFamily="@font/kmi_bold"
+            android:padding="8dp"
+            android:layout_columnWeight="1"
+            android:textSize="12sp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_bscategory_morning"
+            android:text="조조판촉"
+            android:textColor="@color/black"
+            android:fontFamily="@font/kmi_bold"
+            android:padding="8dp"
+            android:layout_columnWeight="1"
+            android:textSize="12sp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_bscategory_cookie"
+            android:text="간식"
+            android:textColor="@color/black"
+            android:fontFamily="@font/kmi_bold"
+            android:padding="8dp"
+            android:layout_columnWeight="1"
+            android:textSize="12sp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_margin="4dp"/>
+
+
+
+    </GridLayout>
+
+
+
+</RelativeLayout>
