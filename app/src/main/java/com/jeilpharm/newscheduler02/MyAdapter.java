@@ -16,6 +16,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.VH> {
     Context context;
     ArrayList<Recycler_item> items;
 
+    public MyAdapter(Context context, ArrayList<Recycler_item> items) {
+        this.context = context;
+        this.items = items;
+    }
+
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
