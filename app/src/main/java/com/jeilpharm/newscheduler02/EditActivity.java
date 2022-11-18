@@ -22,6 +22,7 @@ public class EditActivity extends AppCompatActivity {
 
     ActivityEditBinding binding;
 
+
     int category;
     String[] categoryTitle= new String[]{"웹심포지움","당일심포지움","숙박심포지움","점심식사","저녁식사","조조판촉","간식"};
 
@@ -40,6 +41,11 @@ public class EditActivity extends AppCompatActivity {
 
         category=getIntent().getIntExtra("category",0);
         binding.tvCategory.setText(categoryTitle[category]);
+
+        binding.etTitle.setOnClickListener(view -> {
+            Intent intent= new Intent(this,SetListActivity.class);
+            startActivity(intent);
+        });
 
         binding.tvDate.setOnClickListener(v->clickDate());
         binding.tvCategory.setOnClickListener(v->bottomsheeetdialogcategory());

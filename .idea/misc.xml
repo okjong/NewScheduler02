@@ -3,25 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/drawable/bg_bottomsheet.xml" value="0.1255" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/drawable/bg_edit.xml" value="0.1255" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/drawable/bg_rectangle.xml" value="0.1255" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/drawable/ic_add.xml" value="0.1255" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.1255" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/drawable/ic_baseline_list_24.xml" value="0.1255" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/font/font.xml" value="0.23262279888785914" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/activity_edit.xml" value="0.18999073215940684" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/activity_hospital.xml" value="0.30055579307396324" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/activity_intro.xml" value="0.36614583333333334" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/activity_main.xml" value="0.18981481481481483" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/bottomsheetdialog_calendar.xml" value="0.18999073215940684" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/bottomsheetdialog_category.xml" value="0.25" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/fragment_list.xml" value="0.22" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/fragment_month.xml" value="0.18999073215940684" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/list_fragment.xml" value="0.30055579307396324" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/recycler_item.xml" value="0.18999073215940684" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/layout/staticlist.xml" value="0.18999073215940684" />
-        <entry key="..\:/Android/Projects/NewScheduler02/app/src/main/res/menu/menu.xml" value="0.2997007268063275" />
+        <entry key="..\:/Android/Projects/NewScheduler03/app/src/main/res/layout/activity_edit.xml" value="0.18906394810009267" />
+        <entry key="..\:/Android/Projects/NewScheduler03/app/src/main/res/layout/activity_main.xml" value="0.30055579307396324" />
+        <entry key="..\:/Android/Projects/NewScheduler03/app/src/main/res/layout/activity_set_list.xml" value="0.18888888888888888" />
+        <entry key="..\:/Android/Projects/NewScheduler03/app/src/main/res/layout/fragment_list.xml" value="0.18888888888888888" />
+        <entry key="..\:/Android/Projects/NewScheduler03/app/src/main/res/layout/fragment_month.xml" value="0.18906394810009267" />
       </map>
     </option>
   </component>

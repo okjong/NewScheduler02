@@ -21,6 +21,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.VH> {
         this.items = items;
     }
 
+    public void setArrayList(ArrayList<Recycler_item> items){
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

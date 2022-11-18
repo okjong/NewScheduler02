@@ -1,19 +1,29 @@
-package com.jeilpharm.newscheduler02;
+package com.jeilpharm.newscheduler02
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.CalendarView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
+import com.jeilpharm.newscheduler02.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+class MonthFragment : Fragment() {
 
-public class MonthFragment extends Fragment {
+    var calendarView: CalendarView? = null
+    var behavior: BottomSheetBehavior<*>? = null
+    var bottomsheet: View? = null
+    var position = -1
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_month,container,false);
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+
+
+        return inflater.inflate(R.layout.fragment_month, container, false)
     }
 }

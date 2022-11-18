@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/list_tv_list"
+            android:id="@+id/listfragment_tv_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -18,7 +18,7 @@
             android:textSize="40sp"
             android:textStyle="bold" />
         <Button
-            android:id="@+id/list_btn_set"
+            android:id="@+id/listfragment_btn_set"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#E6CECE"
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
-            android:layout_below="@+id/list_tv_list"/>
+            android:layout_below="@+id/listfragment_tv_list"/>
 
     </RelativeLayout>
 
