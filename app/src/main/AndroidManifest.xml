@@ -20,7 +20,7 @@
         <activity
             android:name=".SetListActivity"
             android:exported="false"
-            android:parentActivityName=".SetListActivity"/>
+            android:parentActivityName=".SetListActivity" />
         <activity
             android:name=".EditActivity"
             android:exported="false"

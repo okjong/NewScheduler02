@@ -1,109 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MonthFragment">
 
         <CalendarView
             android:id="@+id/calendarviewmonth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    </RelativeLayout>
-
-
-
-    <LinearLayout
-        android:id="@+id/bs"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_month"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_bottomsheet"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:behavior_peekHeight="30dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
-        <View
-            android:layout_width="100dp"
-            android:layout_height="4dp"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:background="#FFFFFF00" />
-
-        <TextView
-            android:id="@+id/month_tv_hospital"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="삼성내과"
-            android:textColor="@color/purple_200"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="예정일"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/month_tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2022/11/15(화)"
-            android:textColor="@color/purple_200"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="카테고리"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/month_tv_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="점심식사"
-            android:textColor="@color/purple_200"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="memo"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:hint="memo"
-            android:inputType="textMultiLine"
-            android:lines="3" />
-
-        <Button
-            android:id="@+id/month_btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/teal_200"
-            android:text="save" />
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"/>
 
 
-    </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

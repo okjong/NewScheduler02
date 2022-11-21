@@ -3,6 +3,7 @@ package com.jeilpharm.newscheduler02;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ public class EditActivity extends AppCompatActivity {
 
     ActivityEditBinding binding;
 
+    private DB db=null;
+    Context context;
 
     int category;
     String[] categoryTitle= new String[]{"웹심포지움","당일심포지움","숙박심포지움","점심식사","저녁식사","조조판촉","간식"};
@@ -34,6 +37,36 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        db=DB.getInstance(context);
+        context=getApplicationContext();
+
+        class InsertRunnable implements Runnable{
+
+            @Override
+            public void run() {
+                Schedule schedule=new Schedule();
+
+                schedule.title=binding.etTitle.getText().toString();
+                schedule.category=binding.tvCategory.getText().toString();
+                schedule.date=Integer.valueOf(binding.tvDate.getText().toString());
+                schedule.memo=binding.etNote.getText().toString();
+
+                DB.getInstance(context).dao().InsertAll(schedule);
+            }
+        }
+
+        binding.btnComplete.setOnClickListener(view -> {
+            InsertRunnable insertRunnable= new InsertRunnable();
+            Thread thread= new Thread(insertRunnable);
+            thread.start();
+
+            Intent intent= new Intent(getApplicationContext(),MonthFragment.class);
+            startActivity(intent);
+            finish();
+        });
+
+
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,6 +85,12 @@ public class EditActivity extends AppCompatActivity {
         binding.btnComplete.setOnClickListener(v->clickComplete());
         binding.etTitle.setOnClickListener(v->clickTitle());
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        DB.destroyInstance();
     }
 
     void clickTitle(){
