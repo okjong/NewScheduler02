@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +12,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.jeilpharm.newscheduler02.databinding.ActivityMainBinding;
+import com.jeilpharm.newscheduler02.fragment.ListFragment;
+import com.jeilpharm.newscheduler02.fragment.MonthFragment;
 
 import java.util.ArrayList;
 

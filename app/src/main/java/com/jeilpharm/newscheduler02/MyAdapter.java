@@ -13,6 +13,16 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.VH> {
 
+    public interface OnItemClickListener {
+        void onItemClick(int pos);
+    }
+
+    private OnItemClickListener onItemClickListener = null;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
     Context context;
     ArrayList<Recycler_item> items;
 
@@ -56,6 +66,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.VH> {
 
             sigun=itemView.findViewById(R.id.recylcer_item_sigun);
             hospital=itemView.findViewById(R.id.recycler_item_hospital);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        if (onItemClickListener != null) {
+                            onItemClickListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
 
         }
     }

@@ -17,14 +17,12 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class EditActivity extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity implements NetworkCallback{
 
     ActivityEditBinding binding;
-
-    private DB db=null;
-    Context context;
 
     int category;
     String[] categoryTitle= new String[]{"웹심포지움","당일심포지움","숙박심포지움","점심식사","저녁식사","조조판촉","간식"};
@@ -32,41 +30,22 @@ public class EditActivity extends AppCompatActivity {
     BottomSheetDialog bottomSheetDialog;
     String date= "2022년09월30일";
 
+    ArrayList<Recycler_item> items = new ArrayList<>();
+    MyAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        db=DB.getInstance(context);
-        context=getApplicationContext();
-
-        class InsertRunnable implements Runnable{
-
-            @Override
-            public void run() {
-                Schedule schedule=new Schedule();
-
-                schedule.title=binding.etTitle.getText().toString();
-                schedule.category=binding.tvCategory.getText().toString();
-                schedule.date=Integer.valueOf(binding.tvDate.getText().toString());
-                schedule.memo=binding.etNote.getText().toString();
-
-                DB.getInstance(context).dao().InsertAll(schedule);
-            }
-        }
+        adapter= new MyAdapter(this,items);
 
         binding.btnComplete.setOnClickListener(view -> {
-            InsertRunnable insertRunnable= new InsertRunnable();
-            Thread thread= new Thread(insertRunnable);
-            thread.start();
-
             Intent intent= new Intent(getApplicationContext(),MonthFragment.class);
             startActivity(intent);
             finish();
         });
-
-
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,15 +66,13 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        DB.destroyInstance();
-    }
 
     void clickTitle(){
-        Intent intent= new Intent();
+           Intent intent = new Intent(this,SetListActivity.class);
+           startActivity(intent);
     }
+
+
 
     void clickComplete(){
         SQLiteDatabase db= openOrCreateDatabase("Todo",MODE_PRIVATE,null);
@@ -150,6 +127,17 @@ public class EditActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    public void prevGetList() {
+        items.clear();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void endGetList(ArrayList<Recycler_item> arrayList) {
+        adapter.setArrayList(items);
     }
 }
 

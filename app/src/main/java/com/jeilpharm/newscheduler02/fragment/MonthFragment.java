@@ -1,4 +1,4 @@
-package com.jeilpharm.newscheduler02;
+package com.jeilpharm.newscheduler02.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.jeilpharm.newscheduler02.R;
 
 import java.util.Collection;
 import java.util.Iterator;

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.jeilpharm.newscheduler02.databinding.ActivitySetListBinding;
 
@@ -31,6 +32,14 @@ public class SetListActivity extends AppCompatActivity implements NetworkCallbac
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter=new MyAdapter(this,items);
+        
+        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+
+            }
+        });
+        
         binding.recyclerViewSetList.setAdapter(adapter);
 
         binding.btnSetList.setOnClickListener(view -> {

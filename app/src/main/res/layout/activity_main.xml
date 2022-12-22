@@ -12,8 +12,8 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bnv"
-        android:layout_marginBottom="21dp"/>
+        android:layout_above="@+id/bottomappbar"
+        android:layout_marginBottom="21dp" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomappbar"
@@ -41,9 +41,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:src="@drawable/ic_add"
-        app:layout_anchor="@id/bottomappbar"
-        app:fabSize="auto"/>
-
+        app:fabSize="auto"
+        app:layout_anchor="@id/bottomappbar" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
