@@ -1,0 +1,262 @@
+Index: app/src/main/java/com/jeilpharm/newscheduler02/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.jeilpharm.newscheduler02;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentManager;\r\nimport androidx.fragment.app.FragmentTransaction;\r\nimport androidx.room.Room;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.navigation.NavigationBarView;\r\nimport com.jeilpharm.newscheduler02.databinding.ActivityMainBinding;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n\r\n    ActivityMainBinding binding;\r\n    ArrayList<Fragment> fragments = new ArrayList<>();\r\n    FragmentManager manager;\r\n\r\n    int category=0;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        binding=ActivityMainBinding.inflate(getLayoutInflater());\r\n        setContentView(binding.getRoot());\r\n\r\n\r\n        binding.fab.setOnClickListener(view -> {\r\n            Intent intent= new Intent(this,EditActivity.class);\r\n            intent.putExtra(\"category\", category);\r\n            startActivity(intent);\r\n\r\n        });\r\n\r\n        fragments.add(new ListFragment());\r\n        fragments.add(null);\r\n\r\n        manager=getSupportFragmentManager();\r\n        manager.beginTransaction().add(R.id.fragment_container,fragments.get(0)).commit();\r\n\r\n        binding.bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n\r\n                FragmentTransaction transaction=manager.beginTransaction();\r\n\r\n                if (fragments.get(0)!=null) transaction.hide(fragments.get(0));\r\n                if (fragments.get(1)!=null) transaction.hide(fragments.get(1));\r\n\r\n                switch (item.getItemId()){\r\n                    case R.id.list:\r\n                        transaction.show(fragments.get(0));\r\n                        break;\r\n                    case R.id.month:\r\n                        if (fragments.get(1)==null){\r\n                            fragments.set(1, new MonthFragment());\r\n                            transaction.add(R.id.fragment_container,fragments.get(1));\r\n                }\r\n                        transaction.show(fragments.get(1));\r\n                        break;\r\n\r\n            }\r\n                transaction.commit();\r\n                return true;\r\n        }\r\n\r\n    });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/jeilpharm/newscheduler02/MainActivity.java b/app/src/main/java/com/jeilpharm/newscheduler02/MainActivity.java
+--- a/app/src/main/java/com/jeilpharm/newscheduler02/MainActivity.java	(revision 81be91467b6341598d91bc61c1fac2d77a732294)
++++ b/app/src/main/java/com/jeilpharm/newscheduler02/MainActivity.java	(date 1671707593958)
+@@ -5,7 +5,6 @@
+ import androidx.fragment.app.Fragment;
+ import androidx.fragment.app.FragmentManager;
+ import androidx.fragment.app.FragmentTransaction;
+-import androidx.room.Room;
+ 
+ import android.content.Intent;
+ import android.os.Bundle;
+@@ -13,6 +12,8 @@
+ 
+ import com.google.android.material.navigation.NavigationBarView;
+ import com.jeilpharm.newscheduler02.databinding.ActivityMainBinding;
++import com.jeilpharm.newscheduler02.fragment.ListFragment;
++import com.jeilpharm.newscheduler02.fragment.MonthFragment;
+ 
+ import java.util.ArrayList;
+ 
+Index: app/src/main/java/com/jeilpharm/newscheduler02/SetListActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.jeilpharm.newscheduler02;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.app.Activity;\r\nimport android.os.Bundle;\r\nimport android.widget.Button;\r\n\r\nimport com.jeilpharm.newscheduler02.databinding.ActivitySetListBinding;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class SetListActivity extends AppCompatActivity implements NetworkCallback{\r\n\r\n    ActivitySetListBinding binding;\r\n\r\n    MyAdapter adapter;\r\n    ArrayList<Recycler_item> items = new ArrayList<>();\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        binding=ActivitySetListBinding.inflate(getLayoutInflater());\r\n        setContentView(binding.getRoot());\r\n\r\n        setSupportActionBar(binding.toolbarSetList);\r\n        getSupportActionBar().setTitle(\"거래처\");\r\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\r\n\r\n        adapter=new MyAdapter(this,items);\r\n        binding.recyclerViewSetList.setAdapter(adapter);\r\n\r\n        binding.btnSetList.setOnClickListener(view -> {\r\n            NetworkModule networkModule= new NetworkModule(SetListActivity.this,SetListActivity.this);\r\n            networkModule.runGetList();\r\n\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public void prevGetList() {\r\n        items.clear();\r\n        adapter.notifyDataSetChanged();\r\n    }\r\n\r\n    @Override\r\n    public void endGetList(ArrayList<Recycler_item> arrayList) {\r\n        adapter.setArrayList(arrayList);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/jeilpharm/newscheduler02/SetListActivity.java b/app/src/main/java/com/jeilpharm/newscheduler02/SetListActivity.java
+--- a/app/src/main/java/com/jeilpharm/newscheduler02/SetListActivity.java	(revision 81be91467b6341598d91bc61c1fac2d77a732294)
++++ b/app/src/main/java/com/jeilpharm/newscheduler02/SetListActivity.java	(date 1671708350960)
+@@ -7,6 +7,7 @@
+ import android.app.Activity;
+ import android.os.Bundle;
+ import android.widget.Button;
++import android.widget.Toast;
+ 
+ import com.jeilpharm.newscheduler02.databinding.ActivitySetListBinding;
+ 
+@@ -31,6 +32,14 @@
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+ 
+         adapter=new MyAdapter(this,items);
++        
++        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
++            @Override
++            public void onItemClick(int pos) {
++
++            }
++        });
++        
+         binding.recyclerViewSetList.setAdapter(adapter);
+ 
+         binding.btnSetList.setOnClickListener(view -> {
+Index: app/src/main/java/com/jeilpharm/newscheduler02/MyAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.jeilpharm.newscheduler02;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class MyAdapter extends RecyclerView.Adapter<MyAdapter.VH> {\r\n\r\n    Context context;\r\n    ArrayList<Recycler_item> items;\r\n\r\n    public MyAdapter(Context context, ArrayList<Recycler_item> items) {\r\n        this.context = context;\r\n        this.items = items;\r\n    }\r\n\r\n    public void setArrayList(ArrayList<Recycler_item> items){\r\n        this.items = items;\r\n        notifyDataSetChanged();\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View itemView= LayoutInflater.from(context).inflate(R.layout.recycler_item,parent,false);\r\n        return new VH(itemView);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull VH holder, int position) {\r\n        Recycler_item item=items.get(position);\r\n        holder.sigun.setText(item.tvSigun);\r\n        holder.hospital.setText(item.tvHospital);\r\n\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return items.size();\r\n    }\r\n\r\n    class VH extends RecyclerView.ViewHolder{\r\n\r\n        TextView sigun;\r\n        TextView hospital;\r\n\r\n        public VH(@NonNull View itemView) {\r\n            super(itemView);\r\n\r\n            sigun=itemView.findViewById(R.id.recylcer_item_sigun);\r\n            hospital=itemView.findViewById(R.id.recycler_item_hospital);\r\n\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/jeilpharm/newscheduler02/MyAdapter.java b/app/src/main/java/com/jeilpharm/newscheduler02/MyAdapter.java
+--- a/app/src/main/java/com/jeilpharm/newscheduler02/MyAdapter.java	(revision 81be91467b6341598d91bc61c1fac2d77a732294)
++++ b/app/src/main/java/com/jeilpharm/newscheduler02/MyAdapter.java	(date 1671708125249)
+@@ -13,6 +13,16 @@
+ 
+ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.VH> {
+ 
++    public interface OnItemClickListener {
++        void onItemClick(int pos);
++    }
++
++    private OnItemClickListener onItemClickListener = null;
++
++    public void setOnItemClickListener(OnItemClickListener listener) {
++        this.onItemClickListener = listener;
++    }
++
+     Context context;
+     ArrayList<Recycler_item> items;
+ 
+@@ -57,6 +67,18 @@
+             sigun=itemView.findViewById(R.id.recylcer_item_sigun);
+             hospital=itemView.findViewById(R.id.recycler_item_hospital);
+ 
++            itemView.setOnClickListener(new View.OnClickListener() {
++                @Override
++                public void onClick(View view) {
++                    int position = getAdapterPosition();
++                    if (position != RecyclerView.NO_POSITION) {
++                        if (onItemClickListener != null) {
++                            onItemClickListener.onItemClick(position);
++                        }
++                    }
++                }
++            });
++
+         }
+     }
+ }
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:padding=\"16dp\"\r\n    tools:context=\".MainActivity\">\r\n\r\n\r\n    <androidx.fragment.app.FragmentContainerView\r\n        android:id=\"@+id/fragment_container\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_above=\"@+id/bnv\"\r\n        android:layout_marginBottom=\"21dp\"/>\r\n\r\n    <com.google.android.material.bottomappbar.BottomAppBar\r\n        android:id=\"@+id/bottomappbar\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_gravity=\"bottom\"\r\n        app:fabCradleMargin=\"5dp\"\r\n        app:fabCradleRoundedCornerRadius=\"10dp\">\r\n\r\n        <com.google.android.material.bottomnavigation.BottomNavigationView\r\n            android:id=\"@+id/bnv\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"56dp\"\r\n            android:layout_alignParentBottom=\"true\"\r\n            app:menu=\"@menu/menu\"\r\n            app:labelVisibilityMode=\"selected\"\r\n            android:layout_marginRight=\"16dp\"/>\r\n\r\n\r\n    </com.google.android.material.bottomappbar.BottomAppBar>\r\n\r\n    <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n        android:id=\"@+id/fab\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:clickable=\"true\"\r\n        android:src=\"@drawable/ic_add\"\r\n        app:layout_anchor=\"@id/bottomappbar\"\r\n        app:fabSize=\"auto\"/>\r\n\r\n\r\n\r\n</androidx.coordinatorlayout.widget.CoordinatorLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 81be91467b6341598d91bc61c1fac2d77a732294)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1671711517856)
+@@ -12,8 +12,8 @@
+         android:id="@+id/fragment_container"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+-        android:layout_above="@+id/bnv"
+-        android:layout_marginBottom="21dp"/>
++        android:layout_above="@+id/bottomappbar"
++        android:layout_marginBottom="21dp" />
+ 
+     <com.google.android.material.bottomappbar.BottomAppBar
+         android:id="@+id/bottomappbar"
+@@ -41,9 +41,8 @@
+         android:layout_height="wrap_content"
+         android:clickable="true"
+         android:src="@drawable/ic_add"
+-        app:layout_anchor="@id/bottomappbar"
+-        app:fabSize="auto"/>
+-
++        app:fabSize="auto"
++        app:layout_anchor="@id/bottomappbar" />
+ 
+ 
+ </androidx.coordinatorlayout.widget.CoordinatorLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/jeilpharm/newscheduler02/ListFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/jeilpharm/newscheduler02/ListFragment.java b/app/src/main/java/com/jeilpharm/newscheduler02/fragment/ListFragment.java
+rename from app/src/main/java/com/jeilpharm/newscheduler02/ListFragment.java
+rename to app/src/main/java/com/jeilpharm/newscheduler02/fragment/ListFragment.java
+--- a/app/src/main/java/com/jeilpharm/newscheduler02/ListFragment.java	(revision 81be91467b6341598d91bc61c1fac2d77a732294)
++++ b/app/src/main/java/com/jeilpharm/newscheduler02/fragment/ListFragment.java	(date 1671707593917)
+@@ -1,4 +1,4 @@
+-package com.jeilpharm.newscheduler02;
++package com.jeilpharm.newscheduler02.fragment;
+ 
+ import android.content.Intent;
+ import android.os.Bundle;
+@@ -13,6 +13,9 @@
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
++import com.jeilpharm.newscheduler02.R;
++import com.jeilpharm.newscheduler02.SetListActivity;
++
+ import java.util.ArrayList;
+ 
+ public class ListFragment extends Fragment{
+@@ -27,7 +30,7 @@
+         btn=view.findViewById(R.id.listfragment_btn_set);
+ 
+         btn.setOnClickListener(view1 -> {
+-            Intent intent= new Intent(getActivity(),SetListActivity.class);
++            Intent intent= new Intent(getActivity(), SetListActivity.class);
+             startActivity(intent);
+         });
+ 
+Index: app/src/main/res/layout/fragment_month.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\"\r\n    android:padding=\"16dp\"\r\n    tools:context=\".MonthFragment\">\r\n\r\n        <CalendarView\r\n            android:id=\"@+id/calendarviewmonth\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"/>\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/recycler_month\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        app:layoutManager=\"androidx.recyclerview.widget.LinearLayoutManager\"\r\n        android:orientation=\"vertical\"/>\r\n\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_month.xml b/app/src/main/res/layout/fragment_month.xml
+--- a/app/src/main/res/layout/fragment_month.xml	(revision 81be91467b6341598d91bc61c1fac2d77a732294)
++++ b/app/src/main/res/layout/fragment_month.xml	(date 1671707593927)
+@@ -6,7 +6,7 @@
+     android:layout_height="match_parent"
+     android:orientation="vertical"
+     android:padding="16dp"
+-    tools:context=".MonthFragment">
++    tools:context=".fragment.MonthFragment">
+ 
+         <CalendarView
+             android:id="@+id/calendarviewmonth"
+Index: app/src/main/java/com/jeilpharm/newscheduler02/EditActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.jeilpharm.newscheduler02;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.os.Bundle;\r\nimport android.widget.CalendarView;\r\n\r\nimport com.google.android.material.bottomsheet.BottomSheetDialog;\r\nimport com.jeilpharm.newscheduler02.databinding.ActivityEditBinding;\r\nimport com.prolificinteractive.materialcalendarview.CalendarDay;\r\nimport com.prolificinteractive.materialcalendarview.MaterialCalendarView;\r\nimport com.prolificinteractive.materialcalendarview.OnDateSelectedListener;\r\n\r\nimport java.text.SimpleDateFormat;\r\nimport java.time.Month;\r\nimport java.util.ArrayList;\r\nimport java.util.GregorianCalendar;\r\n\r\npublic class EditActivity extends AppCompatActivity implements NetworkCallback{\r\n\r\n    ActivityEditBinding binding;\r\n\r\n    int category;\r\n    String[] categoryTitle= new String[]{\"웹심포지움\",\"당일심포지움\",\"숙박심포지움\",\"점심식사\",\"저녁식사\",\"조조판촉\",\"간식\"};\r\n\r\n    BottomSheetDialog bottomSheetDialog;\r\n    String date= \"2022년09월30일\";\r\n\r\n    ArrayList<Recycler_item> items = new ArrayList<>();\r\n    MyAdapter adapter;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        binding=ActivityEditBinding.inflate(getLayoutInflater());\r\n        setContentView(binding.getRoot());\r\n\r\n        adapter= new MyAdapter(this,items);\r\n\r\n        binding.btnComplete.setOnClickListener(view -> {\r\n            Intent intent= new Intent(getApplicationContext(),MonthFragment.class);\r\n            startActivity(intent);\r\n            finish();\r\n        });\r\n\r\n        setSupportActionBar(binding.toolbar);\r\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\r\n        getSupportActionBar().setTitle(\"일정 추가\");\r\n\r\n        category=getIntent().getIntExtra(\"category\",0);\r\n        binding.tvCategory.setText(categoryTitle[category]);\r\n\r\n        binding.etTitle.setOnClickListener(view -> {\r\n            Intent intent= new Intent(this,SetListActivity.class);\r\n            startActivity(intent);\r\n        });\r\n\r\n        binding.tvDate.setOnClickListener(v->clickDate());\r\n        binding.tvCategory.setOnClickListener(v->bottomsheeetdialogcategory());\r\n        binding.btnComplete.setOnClickListener(v->clickComplete());\r\n        binding.etTitle.setOnClickListener(v->clickTitle());\r\n\r\n    }\r\n\r\n\r\n    void clickTitle(){\r\n           Intent intent = new Intent(this,SetListActivity.class);\r\n           startActivity(intent);\r\n    }\r\n\r\n\r\n\r\n    void clickComplete(){\r\n        SQLiteDatabase db= openOrCreateDatabase(\"Todo\",MODE_PRIVATE,null);\r\n        db.execSQL(\"CREATE TABLE IF NOT EXISTS todo(num INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, date TEXT, category INT, memo TEXT)\");\r\n        String title=binding.etTitle.getText().toString();\r\n        String memo=binding.etNote.getText().toString();\r\n\r\n        db.execSQL(\"INSERT INTO Todo(title,date,category,memo)VALUES(?,?,?,?) \" ,new Object[]{title,date,category,memo});\r\n        onBackPressed();\r\n\r\n    }\r\n\r\n    void bottomsheeetdialogcategory(){\r\n        bottomSheetDialog=new BottomSheetDialog(this);\r\n        bottomSheetDialog.setContentView(R.layout.bottomsheetdialog_category);\r\n        bottomSheetDialog.show();\r\n\r\n        bottomSheetDialog.findViewById(R.id.tv_bscategory_websimposium).setOnClickListener(v->clickCategory(0));\r\n        bottomSheetDialog.findViewById(R.id.tv_bscategory_daysimposium).setOnClickListener(v->clickCategory(1));\r\n        bottomSheetDialog.findViewById(R.id.tv_bscategory_staysimposium).setOnClickListener(v->clickCategory(2));\r\n        bottomSheetDialog.findViewById(R.id.tv_bscategory_lunch).setOnClickListener(v->clickCategory(3));\r\n        bottomSheetDialog.findViewById(R.id.tv_bscategory_dinner).setOnClickListener(v->clickCategory(4));\r\n        bottomSheetDialog.findViewById(R.id.tv_bscategory_morning).setOnClickListener(v->clickCategory(5));\r\n        bottomSheetDialog.findViewById(R.id.tv_bscategory_cookie).setOnClickListener(v->clickCategory(6));\r\n\r\n    }\r\n\r\n    void clickCategory(int category){\r\n\r\n        this.category=category;\r\n        binding.tvCategory.setText(categoryTitle[category]);\r\n        bottomSheetDialog.dismiss();\r\n\r\n    }\r\n\r\n\r\n\r\n    void clickDate(){\r\n\r\n        bottomSheetDialog = new BottomSheetDialog(this);\r\n        bottomSheetDialog.setContentView(R.layout.bottomsheetdialog_calendar);\r\n        bottomSheetDialog.show();\r\n\r\n        CalendarView calendarView=bottomSheetDialog.findViewById(R.id.bsd_calenadar);\r\n        calendarView.setOnDateChangeListener((view,year,month,day)->{\r\n\r\n            GregorianCalendar gregorianCalendar= new GregorianCalendar(year,month,day);\r\n            date= new SimpleDateFormat(\"yyyy년MM월dd일\").format(gregorianCalendar.getTime());\r\n            binding.tvDate.setText(date);\r\n\r\n            bottomSheetDialog.dismiss();\r\n\r\n        });\r\n\r\n    }\r\n\r\n    @Override\r\n    public void prevGetList() {\r\n        items.clear();\r\n        adapter.notifyDataSetChanged();\r\n    }\r\n\r\n    @Override\r\n    public void endGetList(ArrayList<Recycler_item> arrayList) {\r\n        adapter.setArrayList(items);\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/jeilpharm/newscheduler02/EditActivity.java b/app/src/main/java/com/jeilpharm/newscheduler02/EditActivity.java
+--- a/app/src/main/java/com/jeilpharm/newscheduler02/EditActivity.java	(revision 81be91467b6341598d91bc61c1fac2d77a732294)
++++ b/app/src/main/java/com/jeilpharm/newscheduler02/EditActivity.java	(date 1671707593966)
+@@ -1,9 +1,7 @@
+ package com.jeilpharm.newscheduler02;
+ 
+-import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+-import android.content.Context;
+ import android.content.Intent;
+ import android.database.sqlite.SQLiteDatabase;
+ import android.os.Bundle;
+@@ -11,12 +9,9 @@
+ 
+ import com.google.android.material.bottomsheet.BottomSheetDialog;
+ import com.jeilpharm.newscheduler02.databinding.ActivityEditBinding;
+-import com.prolificinteractive.materialcalendarview.CalendarDay;
+-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
++import com.jeilpharm.newscheduler02.fragment.MonthFragment;
+ 
+ import java.text.SimpleDateFormat;
+-import java.time.Month;
+ import java.util.ArrayList;
+ import java.util.GregorianCalendar;
+ 
+@@ -42,7 +37,7 @@
+         adapter= new MyAdapter(this,items);
+ 
+         binding.btnComplete.setOnClickListener(view -> {
+-            Intent intent= new Intent(getApplicationContext(),MonthFragment.class);
++            Intent intent= new Intent(getApplicationContext(), MonthFragment.class);
+             startActivity(intent);
+             finish();
+         });
+Index: app/src/main/java/com/jeilpharm/newscheduler02/MonthFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/jeilpharm/newscheduler02/MonthFragment.java b/app/src/main/java/com/jeilpharm/newscheduler02/fragment/MonthFragment.java
+rename from app/src/main/java/com/jeilpharm/newscheduler02/MonthFragment.java
+rename to app/src/main/java/com/jeilpharm/newscheduler02/fragment/MonthFragment.java
+--- a/app/src/main/java/com/jeilpharm/newscheduler02/MonthFragment.java	(revision 81be91467b6341598d91bc61c1fac2d77a732294)
++++ b/app/src/main/java/com/jeilpharm/newscheduler02/fragment/MonthFragment.java	(date 1671707593975)
+@@ -1,4 +1,4 @@
+-package com.jeilpharm.newscheduler02;
++package com.jeilpharm.newscheduler02.fragment;
+ 
+ import android.content.Context;
+ import android.os.Bundle;
+@@ -12,6 +12,8 @@
+ import androidx.fragment.app.Fragment;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
++import com.jeilpharm.newscheduler02.R;
++
+ import java.util.Collection;
+ import java.util.Iterator;
+ import java.util.List;
